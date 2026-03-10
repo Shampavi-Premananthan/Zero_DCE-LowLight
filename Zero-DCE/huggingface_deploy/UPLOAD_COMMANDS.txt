@@ -1,0 +1,32 @@
+# ========================================
+# Upload to HuggingFace Spaces using HF CLI
+# ========================================
+
+# 1. Login to HuggingFace (one-time setup)
+# You'll need your HF token from: https://huggingface.co/settings/tokens
+hf login
+
+# 2. Create a new Space
+# Replace YOUR_USERNAME with your HuggingFace username
+# Replace YOUR_SPACE_NAME with desired space name (e.g., zero-dce-enhancement)
+hf space create YOUR_USERNAME/YOUR_SPACE_NAME --sdk docker
+
+# 3. Upload all files from huggingface_deploy folder
+# Make sure you're in the huggingface_deploy directory first
+cd D:\Softwareprojects\ZeroDceLow\Zero-DCE\huggingface_deploy
+
+# Upload all files
+hf upload YOUR_USERNAME/YOUR_SPACE_NAME . . --repo-type=space
+
+# ========================================
+# Example with actual username:
+# ========================================
+# hf login
+# hf space create john/zero-dce-lowlight --sdk docker
+# cd D:\Softwareprojects\ZeroDceLow\Zero-DCE\huggingface_deploy
+# hf upload john/zero-dce-lowlight . . --repo-type=space
+
+# ========================================
+# To check your space:
+# ========================================
+# https://huggingface.co/spaces/YOUR_USERNAME/YOUR_SPACE_NAME

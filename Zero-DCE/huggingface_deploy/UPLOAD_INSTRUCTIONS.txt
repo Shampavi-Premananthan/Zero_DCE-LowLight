@@ -1,0 +1,97 @@
+========================================
+HUGGINGFACE SPACES DEPLOYMENT CHECKLIST
+========================================
+
+✅ All files prepared and ready in this folder
+✅ Gradio version: 4.29.0 (stable, tested)
+✅ Docker SDK configured
+✅ Port: 7860 (HuggingFace standard)
+✅ API enabled with .queue().launch()
+✅ Dependencies fixed (libgl1 + OpenCV)
+
+========================================
+DEPLOYMENT STEPS:
+========================================
+
+1. GO TO: https://huggingface.co/new-space
+
+2. FILL IN:
+   - Space name: (e.g., zero-dce-enhancement)
+   - License: Apache-2.0
+   - Select SDK: **Docker** (NOT Gradio!)
+   - Space hardware: CPU basic (free) or T4 GPU
+
+3. UPLOAD FILES IN THIS ORDER:
+   a) README.md (MUST be first - contains Docker config)
+   b) Dockerfile
+   c) requirements.txt
+   d) app.py
+   e) Zero-DCE_code/ (entire folder)
+      - Includes model.py, dataloader.py, Myloss.py
+      - Includes snapshots/Epoch99.pth (80MB model)
+
+4. WAIT:
+   - Build takes 5-10 minutes
+   - Check "Building" status at top of page
+   - View logs if errors occur
+
+5. TEST:
+   - Once live, upload a dark image
+   - Should see 2 outputs: 4-iteration and 8-iteration
+   - Processing takes 40-60 seconds
+
+========================================
+CRITICAL SETTINGS IN FILES:
+========================================
+
+✓ README.md header:
+  sdk: docker
+  app_port: 7860
+
+✓ requirements.txt:
+  gradio==4.29.0
+  huggingface-hub==0.23.0
+
+✓ Dockerfile:
+  EXPOSE 7860
+  Uses libgl1 (not libgl1-mesa-glx)
+
+✓ app.py:
+  demo.queue().launch(
+      server_name="0.0.0.0",
+      server_port=7860,
+      show_api=True
+  )
+
+========================================
+IF ERRORS OCCUR:
+========================================
+
+Error: "No API found"
+→ Already fixed with .queue() and show_api=True
+
+Error: "Module not found"
+→ Check requirements.txt uploaded correctly
+
+Error: "libGL.so.1: cannot open shared object file"
+→ Already fixed with libgl1 in Dockerfile
+
+Error: Build timeout
+→ Use GPU hardware tier (builds faster)
+
+========================================
+YOUR APP URL WILL BE:
+========================================
+
+https://huggingface.co/spaces/YOUR_USERNAME/SPACE_NAME
+
+Example: https://huggingface.co/spaces/john/zero-dce-enhancement
+
+========================================
+SUPPORT:
+========================================
+
+HuggingFace Docs: https://huggingface.co/docs/hub/spaces-sdks-docker
+Community Forum: https://discuss.huggingface.co/
+
+========================================

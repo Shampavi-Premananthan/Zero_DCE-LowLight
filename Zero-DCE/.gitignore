@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+
+# IDE/editor
+.vscode/
+*.swp
+
+# Model weights and checkpoints
+*.pth
+*.pt
+Zero-DCE_code/snapshots/
+Zero-DCE/snapshots/
+
+# Datasets and generated results
+Zero-DCE_code/data/
+Zero-DCE_code/data/result/
+Zero-DCE_code/data/train_data/
+Zero-DCE_code/data/test_data/
+Zero-DCE_code/data/unzipped/
+
+# Logs
+logs/
+*.log
+
+# Node/web build artifacts
+Zero-DCE_files/js/node_modules/
+dist/
+build/
