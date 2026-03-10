@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+Zero-DCE_code/data/train_data/*
+Zero-DCE_code/data/test_data/*
+Zero-DCE_code/data/result/*
+Zero-DCE_code/data/unzipped/*
+Zero-DCE_code/__pycache__/
+snapshots/run1/
+
+# Exclude all snapshots except Epoch99.pth
+Zero-DCE_code/snapshots/Epoch[0-9].pth
+Zero-DCE_code/snapshots/Epoch[0-9][0-9].pth
+!Zero-DCE_code/snapshots/Epoch99.pth
+
+# Documentation and others
+README.md
+Zero-DCE.html
+Zero-DCE_files/
+.git/
+.gitignore
+
+# Training files (not needed for inference)
+Zero-DCE_code/lowlight_train.py
+Zero-DCE_code/dataloader.py
+Zero-DCE_code/Myloss.py
