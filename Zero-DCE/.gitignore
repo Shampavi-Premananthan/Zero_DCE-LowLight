@@ -12,8 +12,9 @@ __pycache__/
 # Model weights and checkpoints
 *.pth
 *.pt
-Zero-DCE_code/snapshots/
-Zero-DCE/snapshots/
+# Allow snapshots tracked in repo
+!Zero-DCE_code/snapshots/*.pth
+# Zero-DCE/snapshots/
 
 # Datasets and generated results
 Zero-DCE_code/data/
